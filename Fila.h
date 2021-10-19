@@ -25,19 +25,16 @@ public:
     Fila();
     Fila(int max);
     ~Fila();
-    bool cheia();
-    bool vazia();
-    int inserir(int valor);
-    int extrair();
+    bool estaCheia();
+    bool estaVazia();
+    int insereElemento(int valor);
+    int removeElemento();
     string imprimir();
     int tamFila();
-
-
-    //IMPLEMENTAR
-    int posicaoDoIntem(int valor); //retorna a posicao na fila, se existir
-    void ordenar(); //ordena em ordem crescente os elementos da fila
-    int front(); //informa o elem do inicio da fila
-    int back(); //informa o elem do final da fila
+    int getPosicaoItem(int valor);
+    void ordenaOrdemCrescente();
+    int front(); /** informa o elem do inicio da fila */
+    int back(); /** informa o elem do final da fila */
 };
 
 #endif

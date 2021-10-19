@@ -21,11 +21,11 @@ Fila::Fila(int max) {
     this->fim = -1;
 }
 
-bool Fila::vazia() {
+bool Fila::estaVazia() {
     return this->tamanho == 0;
 }
 
-bool Fila::cheia() {
+bool Fila::estaCheia() {
     return this->tamanho == this->tamanhoMax;
 }
 
@@ -44,8 +44,8 @@ int Fila::tamFila(){
  *   - retorna a posicao onde o elem foi inserido.
  */
 
-int Fila::inserir(int valor) {
-    if (this->cheia()) {
+int Fila::insereElemento(int valor) {
+    if (this->estaCheia()) {
         return -1;
     }
     this->fim = (this->fim + 1) % this->tamanhoMax;
@@ -62,8 +62,8 @@ int Fila::inserir(int valor) {
  * Retorna o valor do elemento.
  * Obs: se esvaziar a fila (tamanho=0) retorne "ini" e "fim" para -1.
  */
-int Fila::extrair() {
-    if (this->vazia()) {
+int Fila::removeElemento() {
+    if (this->estaVazia()) {
         this->ini = -1;
         this->fim = -1;
         return -1;
@@ -73,7 +73,7 @@ int Fila::extrair() {
     this->fila[ini] = -1;
     this->ini = (this->ini + 1) % this->tamanhoMax;
     this->tamanho--;
-    if (vazia()) {
+    if (estaVazia()) {
         this->ini = -1;
         this->fim = -1;
     }
@@ -94,15 +94,15 @@ string Fila::imprimir() {
     stringstream ss;
     ss << "[ ";
     while(qde > 0){
-        elem = this->extrair();
+        elem = this->removeElemento();
         ss << elem << " ";
-        ret = aux.inserir(elem);
+        ret = aux.insereElemento(elem);
         qde--;
     }
     qde = aux.tamanho;
     while(qde > 0){
-        elem = aux.extrair();
-        ret = this->inserir(elem);
+        elem = aux.removeElemento();
+        ret = this->insereElemento(elem);
         qde--;
     }
     ss << "]";
@@ -115,7 +115,7 @@ string Fila::imprimir() {
  * Depois, retorne os elementos para a fila original respeitando a ordem original
  * Caso nao encontre, retorna -1 (nao esta' na fila ou a fila esta' vazia).
  */
-int Fila::posicaoDoIntem(int valor) {
+int Fila::getPosicaoItem(int valor) {
     Fila aux(this->tamanho);
     int elem, cont=0, resposta= -1;
     //utilizo o while para percorrer toda a fila
@@ -123,7 +123,7 @@ int Fila::posicaoDoIntem(int valor) {
         //contador para indicar a posicao do elemento
         cont = cont+1;
         //extraio o elemento
-        elem = this->extrair();
+        elem = this->removeElemento();
         //verifico se o elemento é igual ao valor digitado pelo usuario
         if(elem == valor) {
             //utilizo a resposta para receber o cont porque caso nao encontre o elemento ele retorna -1;
@@ -133,52 +133,52 @@ int Fila::posicaoDoIntem(int valor) {
             cout << "Elemento está na fila na posição " << resposta << endl;
         }
         //coloco o elemento na pilha auxiliar
-        aux.inserir(elem);
+        aux.insereElemento(elem);
     }
     //preenche a pilha principal
     while(aux.tamanho > 0){
-        elem = aux.extrair();
-        this->inserir(elem);
+        elem = aux.removeElemento();
+        this->insereElemento(elem);
     }
     return resposta;
 
 }
 
 /** futuramente, mudar para um método de ordenação mais eficiente **/
-void Fila::ordenar() {
+void Fila::ordenaOrdemCrescente() {
     //=== IMPLEMENTAR
     Fila aux(this->tamanho);
     Fila ordenada (this->tamanho);
     int elem;
     while(this->tamanho >0)
     {
-        int menor = this->extrair();
+        int menor = this->removeElemento();
         //retira o menor, e coloca numa Fila ordenada até acabar os elementos da Fila principal"
         while(this->tamanho > 0){
-            elem = this->extrair();
+            elem = this->removeElemento();
             //ve se o elemento é menor que o "menor atual"
             if(elem < menor){
                 //se o elemento for maior que a res
-                aux.inserir(menor);
+                aux.insereElemento(menor);
                 menor = elem;
             }
             else{
-                aux.inserir(elem);
+                aux.insereElemento(elem);
             }
         }
         //restaura a fila
         while(aux.tamanho > 0){
-            elem = aux.extrair();
+            elem = aux.removeElemento();
             //condicional para deixar a restaurar fila "principal", tirando um elemento por iteração (o elemento menor)
-            this->inserir(elem);
+            this->insereElemento(elem);
         }
         //adiciona a fila de ordenadas
-        ordenada.inserir(menor);
+        ordenada.insereElemento(menor);
     }
     //passando da fila ordenada para a fila "principal"
     while(ordenada.tamanho>0){
-        int valor = ordenada.extrair();
-        this->inserir(valor);
+        int valor = ordenada.removeElemento();
+        this->insereElemento(valor);
     }
     return;
 }
@@ -188,19 +188,19 @@ int Fila::front() {
     Fila aux(this->tamanho);
     int elem;
     //estrai o primeiro elemento
-    elem = this->extrair();
+    elem = this->removeElemento();
     cout << "\nO primeiro elemento da fila é o número " << elem << "";
     //guarda o elemento na fila auxiliar
-    aux.inserir(elem);
+    aux.insereElemento(elem);
     //retira os outros elementos e insire na auxiliar
     while(this->tamanho > 0){
-        elem = this->extrair();
-        aux.inserir(elem);
+        elem = this->removeElemento();
+        aux.insereElemento(elem);
     }
     //retorna os valor da fila auxiliar para fila principal
     while(aux.tamanho > 0){
-        elem = aux.extrair();
-        this->inserir(elem);
+        elem = aux.removeElemento();
+        this->insereElemento(elem);
     }
     return 0;
 }
@@ -211,15 +211,15 @@ int Fila::back() {
     int elem;
     //percorre o vetor  e estrai os elementos e coloca na fila auxiliar
     while(this->tamanho > 0){
-        elem = this->extrair();
-        aux.inserir(elem);
+        elem = this->removeElemento();
+        aux.insereElemento(elem);
     }
     //print do último elemento
     cout << "\nO último elemento da fila é o número " << elem << "";
     //retorna os valores para fila principal
     while(aux.tamanho > 0){
-        elem = aux.extrair();
-        this->inserir(elem);
+        elem = aux.removeElemento();
+        this->insereElemento(elem);
     }
     return 0;
 }

@@ -50,7 +50,7 @@ int main() {
                 int dado = -1;
                 cout << "\nInforme o valor do dado: ";
                 cin >> dado;
-                int x = fila.inserir(dado);
+                int x = fila.insereElemento(dado);
                 if (x == -1) {
                     cout << "\nERRO: A fila está cheia!";
                 } else if (x == -2) {
@@ -62,7 +62,7 @@ int main() {
             }
 
             case 2: {
-                int x = fila.extrair();
+                int x = fila.removeElemento();
                 if (x == -1) {
                     cout << "\nERRO: A fila está vazia!";
                 } else {
@@ -80,7 +80,7 @@ int main() {
                 int elem;
                 cout << "Qual elemento deseja procurar na fila? ";
                 cin >> elem;
-                int res = fila.posicaoDoIntem(elem);
+                int res = fila.getPosicaoItem(elem);
                 if (res == -1) {
                     cout << "Elemento não está na fila!";
                 }
@@ -93,7 +93,7 @@ int main() {
             }
 
             case 6: {
-                fila.ordenar();
+                fila.ordenaOrdemCrescente();
                 cout << "Fila ordenada\n" << fila.imprimir();
                 break;
             }
