@@ -207,7 +207,7 @@ int Fila::front() {
 int Fila::back() {
     Fila aux(this->tamanho);
     int elem;
-    //percorre o vetor  e estrai os elementos e coloca na fila auxiliar
+    //percorre o vetor  e extrai os elementos e coloca na fila auxiliar
     while(this->tamanho > 0){
         elem = this->removeElemento();
         aux.insereElemento(elem);
