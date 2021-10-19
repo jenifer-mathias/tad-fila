@@ -146,7 +146,6 @@ int Fila::getPosicaoItem(int valor) {
 
 /** futuramente, mudar para um método de ordenação mais eficiente **/
 void Fila::ordenaOrdemCrescente() {
-    //=== IMPLEMENTAR
     Fila aux(this->tamanho);
     Fila ordenada (this->tamanho);
     int elem;
@@ -180,14 +179,13 @@ void Fila::ordenaOrdemCrescente() {
         int valor = ordenada.removeElemento();
         this->insereElemento(valor);
     }
-    return;
 }
 
 
 int Fila::front() {
     Fila aux(this->tamanho);
     int elem;
-    //estrai o primeiro elemento
+    //extrai o primeiro elemento
     elem = this->removeElemento();
     cout << "\nO primeiro elemento da fila é o número " << elem << "";
     //guarda o elemento na fila auxiliar
