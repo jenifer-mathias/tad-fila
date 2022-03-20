@@ -29,7 +29,7 @@ int main() {
         cout << "\n1 - inserir na fila (enqueue)";
         cout << "\n2 - remover da fila (dequeue)";
         cout << "\n3 - imprimir a fila";
-        cout << "\n4 - verificar se um item/dado esta na fila";
+        cout << "\n4 - verificar se um item está na fila";
         cout << "\n5 - tamanho da fila";
         cout << "\n6 - ordenar a fila";
         cout << "\n7 - primeiro elemento da fila";
@@ -52,9 +52,9 @@ int main() {
                 cin >> dado;
                 int x = fila.insereElemento(dado);
                 if (x == -1) {
-                    cout << "\nERRO: A fila está cheia!";
+                    cout << "\nA fila já está cheia!";
                 } else if (x == -2) {
-                    cout << "\nERRO: Este elemento já está na fila!";
+                    cout << "\nEste elemento já está na fila!";
                 } else {
                     cout << "\nElemento adicionado com sucesso na posição " << x << " da fila.";
                 }
@@ -64,9 +64,9 @@ int main() {
             case 2: {
                 int x = fila.removeElemento();
                 if (x == -1) {
-                    cout << "\nERRO: A fila está vazia!";
+                    cout << "\nA fila está vazia!";
                 } else {
-                    cout << "Elemento " << x << " foi removido com sucesso." << endl;
+                    cout << "\nElemento " << x << " foi removido com sucesso." << endl;
                 }
                 break;
             }
@@ -78,11 +78,11 @@ int main() {
 
             case 4: {
                 int elem;
-                cout << "Qual elemento deseja procurar na fila? ";
+                cout << "\nQual elemento deseja procurar na fila? ";
                 cin >> elem;
                 int res = fila.getPosicaoItem(elem);
                 if (res == -1) {
-                    cout << "Elemento não está na fila!";
+                    cout << "\nElemento não está na fila!";
                 }
                 break;
             }
@@ -94,7 +94,7 @@ int main() {
 
             case 6: {
                 fila.ordenaOrdemCrescente();
-                cout << "Fila ordenada\n" << fila.imprimir();
+                cout << "\nFila ordenada\n" << fila.imprimir();
                 break;
             }
 
@@ -109,7 +109,7 @@ int main() {
             }
 
             default: {
-                cout << "\n Opção inválida.";
+                cout << "\nOpção inválida.";
                 break;
             }
         }

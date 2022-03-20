@@ -117,28 +117,28 @@ string Fila::imprimir() {
  */
 int Fila::getPosicaoItem(int valor) {
     Fila aux(this->tamanhoAtual);
-    int elem, cont = 0, resposta = -1;
+    int elemento, cont = 0, resposta = -1;
     //utilizo o while para percorrer toda a fila
     while(this->tamanhoAtual > 0){
         //contador para indicar a posicao do elemento
         cont = cont+1;
         //extraio o elemento
-        elem = this->removeElemento();
+        elemento = this->removeElemento();
         //verifico se o elemento é igual ao valor digitado pelo usuario
-        if(elem == valor) {
+        if(elemento == valor) {
             //utilizo a resposta para receber o cont porque caso nao encontre o elemento ele retorna -1;
             resposta = cont;
             /* Coloquei o print de quando encontra o elemento dentro do método para que quando haja mais de um
              * elemento dentro da fila ele possa mostrar as posicoes*/
-            cout << "Elemento está na fila na posição " << resposta << endl;
+            cout <<"\nO elemento está na fila na posição " << resposta << endl;
         }
         //coloco o elemento na pilha auxiliar
-        aux.insereElemento(elem);
+        aux.insereElemento(elemento);
     }
     //preenche a pilha principal
     while(aux.tamanhoAtual > 0){
-        elem = aux.removeElemento();
-        this->insereElemento(elem);
+        elemento = aux.removeElemento();
+        this->insereElemento(elemento);
     }
     return resposta;
 
