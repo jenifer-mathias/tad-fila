@@ -16,9 +16,9 @@ class Fila {
 private:
     //atributos
     int * fila; //ponteiro é um link para um END de MEM
-    int tamanho; //qde de elem na fila
-    int tamanhoMax;
-    int ini; //marcador de inicio da Fila
+    int tamanhoAtual;
+    int tamanhoMaximoFila;
+    int inicio;
     int fim; //marcador de fim da fila
 
 public:
@@ -34,7 +34,7 @@ public:
     int getPosicaoItem(int valor);
     void ordenaOrdemCrescente();
     int front(); /** informa o elem do inicio da fila */
-    int back(); /** informa o elem do final da fila */
+    int back();  /** informa o elem do final da fila */
 };
 
 #endif

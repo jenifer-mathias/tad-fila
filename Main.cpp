@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
 
-    cout << "\n              Iniciando a execução ... \n\n\n";
+    cout << "\n              Iniciando a execução ... \n\n";
     cout << "Primeiramente, informe o tamanho do vetor para criarmos a fila: ";
     int tam;
     cin >> tam;
